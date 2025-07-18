@@ -1,0 +1,39 @@
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); // Dark overlay
+    backdrop-filter: blur(2px);
+    z-index: -1;
+  }
+}
+
+// Content wrapper to stay above background
+.main-content {
+  position: relative;
+  z-index: 1;
+  padding: 40px 20px;
+  color: #fff; // Use light text if background is dark
+}

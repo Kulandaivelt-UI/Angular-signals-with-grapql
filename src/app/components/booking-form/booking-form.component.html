@@ -1,0 +1,65 @@
+<mat-card class="booking-card" role="form" aria-labelledby="booking-title">
+  <mat-card-header>
+    <mat-card-title id="booking-title">Booking Flight</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="bookingForm" (ngSubmit)="submit()" aria-describedby="booking-instructions">
+      <p id="booking-instructions" class="sr-only">
+        Please fill out all required fields marked with an asterisk. All inputs are validated.
+      </p>
+
+      <!-- Full Name -->
+      <mat-form-field appearance="fill">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="fullName" aria-required="true" />
+        @if(bookingForm.get('fullName')?.hasError('required') && bookingForm.get('fullName')?.touched) {
+        <mat-error>
+          Full Name is required.
+        </mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" aria-required="true" />
+        @if(bookingForm.get('email')?.hasError('required') && bookingForm.get('email')?.touched) {
+        <mat-error>
+          Email is required.
+        </mat-error>
+        }
+        @if(bookingForm.get('email')?.hasError('email') && bookingForm.get('email')?.touched) {
+        <mat-error>
+          Enter a valid email.
+        </mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Contact (optional) -->
+      <mat-form-field appearance="fill">
+        <mat-label>Contact No.</mat-label>
+        <input matInput formControlName="contact" type="tel" />
+      </mat-form-field>
+
+      <!-- No. of Passengers -->
+      <mat-form-field appearance="fill">
+        <mat-label>No. of Passengers</mat-label>
+        <input matInput type="number" formControlName="passengers" min="1" aria-required="true" />
+        @if(bookingForm.get('passengers')?.hasError('min') && bookingForm.get('passengers')?.touched) {
+        <mat-error>
+          At least one passenger is required.
+        </mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Submit Button -->
+      <div class="actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="bookingForm.invalid"
+          aria-disabled="{{ bookingForm.invalid }}">
+          Confirm Booking
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,22 @@
+.filter-sidebar {
+  margin-bottom: 1rem; 
+  border-radius: 6px;
+  background: #fff;
+  width: 100%;
+  select {
+    margin-left: 0.5rem;
+  }
+  
+    mat-card-header {
+    background: #3f51b5;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 1rem 1.5rem;
+
+    mat-card-title {
+      color: #fff;
+    }
+  }
+
+  
+}

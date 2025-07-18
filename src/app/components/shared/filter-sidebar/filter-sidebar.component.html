@@ -1,0 +1,49 @@
+<mat-card class="filter-sidebar" role="region" aria-labelledby="filter-sidebar">
+  <mat-card-header>
+    <mat-card-title id="filter-heading">Popular Filters</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    @if (availableAirlines.length) {
+    <!-- Airlines Section -->
+    <div role="group" aria-labelledby="airlines-heading">
+      <p id="airlines-heading"><b>Airlines</b></p>
+      @for (airline of availableAirlines; track airline) {
+      <div>
+        <mat-checkbox [checked]="selectedAirlines().includes(airline)" (change)="toggleAirline(airline, $event.checked)"
+          aria-label="Filter by airline {{ airline }}">
+          {{ airline }}
+        </mat-checkbox>
+      </div>
+      }
+    </div>
+    }
+
+    <!-- Sort Section -->
+    <div role="group" aria-labelledby="sort-heading">
+      <p id="sort-heading"><b>Sort By</b></p>
+      <mat-form-field appearance="outline">
+        <mat-label id="sort-label">Sort options</mat-label>
+        <mat-select [value]="selectedSort()" (selectionChange)="updateSort($event)"
+          aria-labelledby="sort-heading sort-label">
+          <mat-option value="price" aria-label="Sort by price">Price</mat-option>
+          <mat-option value="duration" aria-label="Sort by duration">Duration</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Departure Time Section -->
+    <div role="group" aria-labelledby="departure-time-heading">
+      <p id="departure-time-heading"><b>Departure Time</b></p>
+      @for (slot of timeSlot; track slot) {
+      <div>
+        <mat-checkbox [checked]="selectedTimeSlots().includes(slot)" (change)="toggleTimeSlot(slot, $event.checked)"
+          aria-label="Filter by departure time {{ slot }}">
+          {{ slot }}
+        </mat-checkbox>
+      </div>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>

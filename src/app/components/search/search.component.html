@@ -1,0 +1,70 @@
+<mat-card class="flight-search-card" role="region" aria-labelledby="search-heading">
+  <div class="flight-search-inner">
+    <mat-card-header>
+      <mat-card-title id="search-heading">Search Flights</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form (submit)="searchFlights()" class="flight-search-form" aria-describedby="search-desc">
+        <p id="search-desc" class="sr-only">
+          Use the form below to search for available flights.
+        </p>
+
+        <!-- Trip Type -->
+        <div class="flight-form-section" role="radiogroup" aria-label="Trip type">
+          <mat-radio-group [ngModel]="roundTrip()" (ngModelChange)="roundTrip.set($event)" name="roundTrip"
+            aria-label="Select trip type">
+            <mat-radio-button value="true" aria-label="Round trip">Round Trip</mat-radio-button>
+            <mat-radio-button value="false" aria-label="One way">One-way</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <!-- Flight Inputs -->
+        <div class="flight-form-grid">
+          <mat-form-field class="flight-form-field" appearance="outline">
+            <mat-label>Source</mat-label>
+            <input matInput [ngModel]="from()" (ngModelChange)="from.set($event)" name="from" placeholder="Source"
+              aria-label="Source airport" />
+          </mat-form-field>
+
+          <mat-form-field class="flight-form-field" appearance="outline">
+            <mat-label>Destination</mat-label>
+            <input matInput [ngModel]="to()" (ngModelChange)="to.set($event)" name="to" placeholder="Destination"
+              aria-label="Destination airport" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Departure Date</mat-label>
+            <input matInput name="departureDate" [matDatepicker]="departurePicker" [ngModel]="departureDate()"
+              (ngModelChange)="departureDate.set($event)" aria-label="Select departure date" />
+            <mat-datepicker-toggle matSuffix [for]="departurePicker"></mat-datepicker-toggle>
+            <mat-datepicker #departurePicker></mat-datepicker>
+          </mat-form-field>
+
+          @if (roundTrip()) {
+          <mat-form-field appearance="outline">
+            <mat-label>Return Date</mat-label>
+            <input matInput name="returnDate" [matDatepicker]="returnPicker" [ngModel]="returnDate()"
+              (ngModelChange)="returnDate.set($event)" aria-label="Select return date" />
+            <mat-datepicker-toggle matSuffix [for]="returnPicker"></mat-datepicker-toggle>
+            <mat-datepicker #returnPicker></mat-datepicker>
+          </mat-form-field>
+          }
+        </div>
+
+        <!-- Form Actions -->
+        <div class="flight-form-grid">
+          <div class="flight-form-actions">
+            <button mat-flat-button color="primary" type="submit" aria-label="Submit flight search form">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>
+
+@if (searchClicked) {
+<app-results aria-label="Flight results section"></app-results>
+}
