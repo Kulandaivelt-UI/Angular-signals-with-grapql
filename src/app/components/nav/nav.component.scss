@@ -1,0 +1,59 @@
+.flights-booking-nav-toolbar {
+  .mat-toolbar {
+    background-color: white;
+  }
+
+  .toolbar-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90vw;
+    max-width: 1224px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    margin-top: 1rem;
+    width: 200px;
+    height: 150px;
+    fill: #0062e3;
+  }
+
+  .btn-language-currency {
+    font-size: 0.75rem;
+    background-color: #e0e4e9;
+    margin-right: 1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .img-language-flag {
+    width: 22px;
+    height: 19px;
+    margin: 0 0.5rem 0.2rem;
+    vertical-align: middle;
+  }
+
+  .bottom-toolbar,
+  .toolbar-internal-links {
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+
+  .toolbar-internal-links {
+    button {
+      margin-right: 0.4rem;
+      border-radius: 0.25rem 0.25rem 0 0;
+      background-color: #00a1b0;
+
+      &:hover,
+      &.active {
+        background-color: #002e5d;
+      }
+
+      svg {
+        fill: white;
+        vertical-align: middle;
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.flight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.flight-card {
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  } 
+
+  .route,
+  .timing,
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.75rem 0;
+  }
+
+  .route mat-icon,
+  .meta mat-icon {
+    vertical-align: middle;
+    margin-right: 0.25rem;
+  }
+
+  .error {
+    color: #d32f2f; 
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+}

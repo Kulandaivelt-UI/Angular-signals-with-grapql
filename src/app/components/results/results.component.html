@@ -1,0 +1,38 @@
+<!-- Loading Spinner -->
+<app-spinner [loading]="flightService.loading()"></app-spinner>
+
+@if (!flightService.loading()) {
+
+@if (filteredFlights().length > 0) {
+<section class="flight-layout" role="region" aria-label="Flight search results">
+  <!-- Filter Sidebar -->
+  <app-filter-sidebar class="filter-section" [availableAirlines]="availableAirlines()"
+    (filtersChanged)="applyFilters($event)" aria-label="Flight filter options">
+  </app-filter-sidebar>
+
+  <!-- Flight Results -->
+  <section class="results-section" role="list" aria-label="Available flights list">
+    @for (flight of filteredFlights(); track flight) {
+    <app-flight-card [flight]="flight" role="listitem" aria-label="Flight card">
+      <div class="form-actions">
+        <button mat-flat-button color="primary" (click)="flight.fid !== undefined && book(flight.fid)">
+          Book
+        </button>
+      </div>
+    </app-flight-card>
+    }
+  </section>
+</section>
+}
+
+@else {
+<section class="flight-layout" role="region" aria-label="No flights found message">
+  <div class="form-actions">
+    <p class="error" role="alert" aria-live="assertive">
+      No flights found for the selected criteria.
+    </p>
+  </div>
+</section>
+}
+
+}

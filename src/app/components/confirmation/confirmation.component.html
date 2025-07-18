@@ -1,0 +1,92 @@
+@if (error.length) {
+  <div class="error-message" role="alert" aria-live="assertive">
+    <h2>Something went wrong</h2>
+    <p>{{ error }}</p>
+    <button class="btn" routerLink="/search" aria-label="Try a new booking">Try Again</button>
+  </div>
+} @else {
+  <div class="confirm-card" role="region" aria-labelledby="confirmation-heading">
+    <div class="confirm-header" aria-live="assertive">
+      <h1 id="confirmation-heading">Booking Confirmed!</h1>
+    </div>
+
+    <div class="confirm-body">
+      <div class="section" aria-labelledby="booking-details-heading">
+        <h2 id="booking-details-heading">Booking Details</h2>
+
+        <ul class="detail-list" aria-live="polite"> 
+          <li>
+            <span class="visually-hidden">Reference ID:</span>
+            <strong>{{ bookingDetails.referenceId }}</strong>
+          </li>
+        </ul>
+
+        <div class="divider" role="separator" aria-hidden="true"></div>
+
+        <ul class="detail-list">
+          <li>
+            <span class="visually-hidden">Airline and Flight No:</span>
+            <strong>{{ bookingDetails.airline }} – {{ bookingDetails.flightNo }}</strong>
+          </li>
+          <li>
+            <span class="visually-hidden">Route:</span>
+            <strong>{{ bookingDetails.from }} → {{ bookingDetails.to }}</strong>
+          </li>
+          <li>
+            <span class="visually-hidden">Departure Date and Time:</span>
+            <strong>{{ bookingDetails.departureDate }} at {{ bookingDetails.departureTime }}</strong>
+          </li>
+          <li>
+            <span class="visually-hidden">Duration:</span>
+            <strong>{{ bookingDetails.duration }}</strong>
+          </li>
+          <li>
+            <span class="visually-hidden">Price:</span>
+            <strong>₹{{ bookingDetails.price }}</strong>
+          </li>
+
+          @if (bookingDetails.roundTrip) {
+            <li>
+              <span class="visually-hidden">Round Trip:</span>
+              <strong>Yes</strong>
+            </li>
+            <li>
+              <span class="visually-hidden">Return Date:</span>
+              <strong>{{ bookingDetails.returnDate }}</strong>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="divider" role="separator" aria-hidden="true"></div>
+
+      <div class="section" aria-labelledby="passenger-details-heading">
+        <h2 id="passenger-details-heading">Passenger Details</h2>
+        <ul class="detail-list">
+          <li>
+            <span class="visually-hidden">Name:</span>
+            <strong>{{ bookingDetails.fullName }}</strong>
+          </li>
+          <li>
+            <span class="visually-hidden">Email:</span>
+            <strong>{{ bookingDetails.email }}</strong>
+          </li>
+          <li>
+            <span class="visually-hidden">Contact Number:</span>
+            <strong>{{ bookingDetails.contact }}</strong>
+          </li>
+          <li>
+            <span class="visually-hidden">Number of Passengers:</span>
+            <strong>{{ bookingDetails.passengers }}</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="confirm-actions">
+      <button class="btn primary" (click)="backToSearch()" aria-label="Go back to flight search">
+        Back to Search
+      </button>
+    </div>
+  </div>
+}

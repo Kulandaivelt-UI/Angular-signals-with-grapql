@@ -1,0 +1,41 @@
+.error {
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.flight-layout {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem;
+  align-items: flex-start;
+
+  .filter-section {
+    min-width: 120px;
+    margin-top: 30px;
+  }
+
+  .results-section {
+    flex: 1;
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      align-items: end;
+    }
+
+    .form-field {
+      width: 100%;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+  }
+}
