@@ -1,30 +1,56 @@
+// ==========================
+// Variables
+// ==========================
+$spacing-unit: 1rem;
+$gap-small: 12px;
+$gap-medium: 16px;
+$gap-large: 1.5rem;
+$min-filter-width: 120px;
+$mobile-breakpoint: 768px;
+$primary-color: #1976d2;
+
+// ==========================
+// Mixins
+// ==========================
+@mixin flex-center($direction: row, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  gap: $gap;
+}
+
+@mixin grid-columns($min, $max, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min, $max));
+  gap: $gap;
+}
+
+// ==========================
+// Styles
+// ==========================
 .error {
   color: white;
-  display: flex;
-  align-items: center;
+  @include flex-center(row, $gap-small);
 }
 
 .flight-layout {
   display: flex;
-  gap: 1.5rem;
-  padding: 1rem;
+  gap: $gap-large;
+  padding: $spacing-unit;
   align-items: flex-start;
 
   .filter-section {
-    min-width: 120px;
+    min-width: $min-filter-width;
     margin-top: 30px;
   }
 
   .results-section {
     flex: 1;
-    display: grid;
-    gap: 1rem;
-    padding: 1rem;
+    padding: $spacing-unit;
+    @include grid-columns(220px, 1fr, $gap-medium);
 
     .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+      @include grid-columns(220px, 1fr, $gap-medium);
       align-items: end;
     }
 
@@ -33,9 +59,10 @@
     }
 
     .form-actions {
-      display: flex;
-      gap: 12px;
-      align-items: center;
+      @include flex-center(row, $gap-small);
     }
   }
+
+  // ==========================
+  // Responsive Media Query
 }
