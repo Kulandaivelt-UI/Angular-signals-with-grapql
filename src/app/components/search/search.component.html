@@ -14,8 +14,8 @@
         <div class="flight-form-section" role="radiogroup" aria-label="Trip type">
           <mat-radio-group [ngModel]="roundTrip()" (ngModelChange)="roundTrip.set($event)" name="roundTrip"
             aria-label="Select trip type">
-            <mat-radio-button value="true" aria-label="Round trip">Round Trip</mat-radio-button>
-            <mat-radio-button value="false" aria-label="One way">One-way</mat-radio-button>
+            <mat-radio-button [value]="true" aria-label="Round trip">Round Trip</mat-radio-button>
+            <mat-radio-button [value]="false" aria-label="One way">One-way</mat-radio-button>
           </mat-radio-group>
         </div>
 
