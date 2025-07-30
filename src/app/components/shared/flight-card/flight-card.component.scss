@@ -1,11 +1,3 @@
-.flight-grid {
-  display: grid;
-  grid-template-columns: repeat(grid-auto-rows, minmax(300px, 1fr));
-  gap: 1rem; 
-  align-items: start;
-  grid-auto-rows: auto;
-}
-
 .flight-card {
   // make each card a square
   width: 100%;
