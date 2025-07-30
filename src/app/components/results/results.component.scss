@@ -47,7 +47,7 @@ $primary-color: #1976d2;
   .results-section {
     flex: 1;
     padding: $spacing-unit;
-    @include grid-columns(220px, 1fr, $gap-medium);
+    @include grid-columns(350px, 1fr, $gap-medium);
 
     .form-grid {
       @include grid-columns(220px, 1fr, $gap-medium);
