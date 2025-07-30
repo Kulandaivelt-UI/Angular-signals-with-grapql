@@ -1,38 +1,54 @@
-<!-- Loading Spinner -->
-<app-spinner [loading]="flightService.loading()"></app-spinner>
+<div class="flight-grid" role="region" aria-label="Available Flights">
+  <mat-card class="flight-card" appearance="outlined">
+    <ng-content></ng-content>
+    <mat-card-header>
+      <mat-card-title aria-label="Airline name">{{ _flight().airline }}</mat-card-title>
+      <mat-card-subtitle aria-label="Flight number">{{ _flight().flightNo }}</mat-card-subtitle>
 
-@if (!flightService.loading()) {
+    </mat-card-header>
+    <mat-divider role="separator"></mat-divider>
 
-@if (filteredFlights().length > 0) {
-<section class="flight-layout" role="region" aria-label="Flight search results">
-  <!-- Filter Sidebar -->
-  <app-filter-sidebar class="filter-section" [availableAirlines]="availableAirlines()"
-    (filtersChanged)="applyFilters($event)" aria-label="Flight filter options">
-  </app-filter-sidebar>
+    <mat-card-content>
+      <div class="route" aria-label="Flight route">
+        <mat-icon aria-hidden="true">flight_takeoff</mat-icon>
+        <span aria-label="From">{{ _flight().from }}</span>
+        <mat-icon aria-hidden="true">arrow_forward</mat-icon>
 
-  <!-- Flight Results -->
-  <section class="results-section" role="list" aria-label="Available flights list">
-    @for (flight of filteredFlights(); track flight) {
-    <app-flight-card [flight]="flight" role="listitem" aria-label="Flight card">
-      <div class="form-actions">
-        <button mat-flat-button color="primary" (click)="flight.fid !== undefined && book(flight.fid)">
-          Book
-        </button>
+        <span aria-label="To">{{ _flight().to }}</span>
+        <mat-icon aria-hidden="true">flight_land</mat-icon>
       </div>
-    </app-flight-card>
-    }
-  </section>
-</section>
-}
 
-@else {
-<section class="flight-layout" role="region" aria-label="No flights found message">
-  <div class="form-actions">
-    <p class="error" role="alert" aria-live="assertive">
-      No flights found for the selected criteria.
-    </p>
-  </div>
-</section>
-}
+      <div class="timing" aria-label="Flight timings">
+        <div>
+          <strong>Departure:</strong>
+          <span aria-label="Departure time">{{ _flight().departureTime }}</span>
+        </div>
+        <div>
+          <strong>Arrival:</strong>
+          <span aria-label="Arrival time">
+            {{ flightService.getArrivalTime(_flight().duration,_flight().departureTime) }}
+          </span>
+        </div>
+      </div>
 
-}
+      <div class="meta" aria-label="Flight details">
+        <span>
+          <mat-icon aria-hidden="true">schedule</mat-icon>
+          <span aria-label="Duration">{{ _flight().duration }}</span>
+        </span>
+        @if(!_flight().roundTrip) {
+        <span class="meta">
+          <span class="error" role="alert" aria-live="assertive">One way trip</span>
+        </span>
+        }
+        <span>
+          <mat-icon aria-hidden="true">currency_rupee</mat-icon>
+          <span aria-label="Price">{{ _flight().price }}</span>
+        </span>
+      </div>
+
+
+
+    </mat-card-content>
+  </mat-card>
+</div>
